@@ -13,6 +13,36 @@ const firebaseConfig = {
     measurementId: "G-BW6RF4437S"
 };
 
+
+
+//take the auth info and store inside the dataabase 
+
+export const createUserProfileDocument = async (userAuth, additionalData) => {
+    //this is a async funciton because we are using api and making fetch 
+    if (!userAuth) return
+
+    const userRef = firestore.doc(`users/${userAuth.uid}`)
+    const snapShot = await userRef.get()
+
+    if (!snapShot.exists) {
+        //create a reference in our database
+        const { displayName, email } = userAuth
+        const createdAt = new Date()
+        try {
+            await userRef.set({
+                displayName,
+                email,
+                createdAt,
+                ...additionalData
+            })
+        }
+        catch (err) {
+            console.log("error catching when create new users", err.message)
+        }
+    }
+    return userRef
+}
+
 firebase.initializeApp(firebaseConfig)
 
 //export auth and firestore
@@ -21,7 +51,7 @@ export const firestore = firebase.firestore()
 
 //implement google sign up
 const provider = new firebase.auth.GoogleAuthProvider()
-provider.setCustomParameters({prompt: "select_account"})
-export const  signInWithGoogle = () => auth.signInWithPopup(provider)
+provider.setCustomParameters({ prompt: "select_account" })
+export const signInWithGoogle = () => auth.signInWithPopup(provider)
 
 export default firebase
