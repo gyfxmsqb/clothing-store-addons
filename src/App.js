@@ -25,6 +25,7 @@ class App extends Component {
 
   unsubscriteFromAuth = null
 
+
   componentDidMount() {
 
     this.unsubscriteFromAuth = auth.onAuthStateChanged(async userAuth => { 
@@ -44,9 +45,9 @@ class App extends Component {
           }, () => {
             console.log(this.state)
           })
+
+          console.log(this.state)
         })
-
-
       } else {
         this.setState({currentUser: userAuth})
       }

@@ -43,8 +43,10 @@ export const createUserProfileDocument = async (userAuth, additionalData) => {
     return userRef
 }
 
-firebase.initializeApp(firebaseConfig)
 
+
+
+firebase.initializeApp(firebaseConfig)
 //export auth and firestore
 export const auth = firebase.auth()
 export const firestore = firebase.firestore()
