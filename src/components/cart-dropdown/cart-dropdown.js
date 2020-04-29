@@ -3,6 +3,7 @@ import "./cart-dropdown.scss"
 import { CustomButton } from '../custom-button/custom-button'
 import CartItem from '../cart-item/cart-item'
 import { connect } from 'react-redux'
+import { selectCartItmes } from '../../redux/cart/cart.selector'
 
 
 const CartDropdown = ({cartItems}) => (
@@ -31,8 +32,10 @@ const CartDropdown = ({cartItems}) => (
 //     cart: { cartItems } }) => ({
 //         cartItems
 //     })
+
+// state is the root0reducer, cart is reducer cartItems is the return in the reducer || or you can look at the next state in your console to see how it is strucutred 
 const mapStateToProps = state => ({
-    cartItems: state.cart.cartItems
+    cartItems: selectCartItmes(state)
     })
 
 
