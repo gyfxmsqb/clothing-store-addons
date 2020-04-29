@@ -42,6 +42,7 @@ const Header = ({ currentUser, hidden }) => (
 
 //destructure the code 
 const mapStateToProps = ({
+    //user and cart are fomr the root-reducer
     user: {currentUser}, cart: {hidden}}) =>({
         currentUser,
         hidden

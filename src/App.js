@@ -94,11 +94,13 @@ class App extends Component {
   }
 }
 
+//where you retrieve data -> user is from the action 
 const mapStateToProps = ({user}) => ({
   currentUser: user.currentUser
   
 })
 
+//where you send the data
 const mapDispatchToProps = dispatch => ({
   setCurrentUser: user => dispatch(setCurrentUser(user))
 })
