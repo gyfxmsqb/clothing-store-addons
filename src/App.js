@@ -8,6 +8,8 @@ import SignInAndSignUpPage from './pages/sign-on-and-sign-up/sign-on-and-sign-up
 import { auth, createUserProfileDocument  } from './firebase/firebase.utils';
 import { connect } from 'react-redux';
 import {setCurrentUser} from "./redux/user/user.action"
+import {selectCurrentUser} from "./redux/user/user.selector"
+import CheckoutPage from './pages/checkout/checkout';
 
 const HatsPage = () => (
 
@@ -79,6 +81,8 @@ class App extends Component {
           <Route exact path="/" component={HomePage} />
           <Route exact path="/hats" component={HatsPage} />
           <Route exact path="/shop" component={ShopPage} />
+          <Route exact path="/checkout" component={CheckoutPage} />
+
           <Route 
           exact 
           path="/signin" 
@@ -95,8 +99,8 @@ class App extends Component {
 }
 
 //where you retrieve data -> user is from the action 
-const mapStateToProps = ({user}) => ({
-  currentUser: user.currentUser
+const mapStateToProps = (state) => ({
+  currentUser: selectCurrentUser(state)
   
 })
 
